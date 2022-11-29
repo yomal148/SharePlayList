@@ -14,13 +14,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button A7 = findViewById(R.id.a7);
-        A7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SpotifyActivity.class);
-                startActivity(intent);
-            }
-        });
+//        A7.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), SpotifyActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
