@@ -15,6 +15,11 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import edu.northeastern.shareplaylist.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
@@ -40,6 +45,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         String songName = itemList.get(position).songName;
         String artistName = itemList.get(position).artist[0].getArtistName();
         String iconUrl = itemList.get(position).album.getAlbumImages()[0].imageUrl;
+        String uri = itemList.get(position).uri;
+        holder.addSongToList(uri);
         holder.setSongName(songName);
         holder.setArtistName(artistName);
         holder.setIcon(iconUrl);
@@ -60,19 +67,43 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             songNameView =itemView.findViewById(R.id.song_name);
             artistNameView = itemView.findViewById(R.id.artist_name);
             albumIcon = itemView.findViewById(R.id.album_image);
-            add = itemView.findViewById(R.id.add_song);
 
-
-            add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
 
 
             itemView.setOnClickListener(this);
 
+        }
+
+        public void addSongToList(String uri) {
+            add = itemView.findViewById(R.id.add_song);
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://api.spotify.com/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    JsonPlaceHolderSpotifyApi apiDOA = retrofit.create(JsonPlaceHolderSpotifyApi.class);
+                    Call<AddTrackResponse> call = apiDOA.addTrackToPlaylist(playlistId, new AddTrackBody(0, new String[]{uri}), TOKEN);
+                    call.enqueue(new Callback<AddTrackResponse>() {
+                        @Override
+                        public void onResponse(Call<AddTrackResponse> call, Response<AddTrackResponse> response) {
+                            if (response.isSuccessful()) {
+                                System.out.println("Added  song!");
+                            }
+
+                            else {
+                                System.out.println("shit");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<AddTrackResponse> call, Throwable t) {
+
+                        }
+                    });
+                }
+            });
         }
 
         public void setSongName(String s) {

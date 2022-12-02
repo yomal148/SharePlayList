@@ -18,11 +18,15 @@ public class Item {
     @SerializedName("artists")
     public Artist[] artist;
 
-    public Item(String songName, String songId, Album album, Artist[] artist) {
+    @SerializedName("uri")
+    public String uri;
+
+    public Item(String songName, String songId, Album album, Artist[] artist, String uri) {
         this.songName = songName;
         this.songId = songId;
         this.album = album;
         this.artist = artist;
+        this.uri = uri;
 
     }
 }
