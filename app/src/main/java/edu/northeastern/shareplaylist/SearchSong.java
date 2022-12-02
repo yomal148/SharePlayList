@@ -33,31 +33,20 @@ public class SearchSong extends AppCompatActivity {
     private List<Item> itemList;
     private ItemAdapter itemAdapter;
     private SearchView searchView;
-    private static String TOKEN =
-            "BQBBcwlRSjdOb5OwNcbAhccolkL_ZElygQ4ZTgUkfLJn1NAIFEhPloNzQQI_MG5O6yQQ9aUd0miK5soNioTOJ3CxU42EZvnxkKA8LhbMTG0tUFrYnfnG8kkPWDQkaAf2ijkk6dp9-KOopLJA74DdbyXcu0dLez9ZN83zTno25tKhnkBYmwUvntM6K_t0xrDLucSW1y_VaA";
+    private String TOKEN = "";
+    private String playlistId = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_song);
-//        Item i1 = new Item("123");
-//        Item i2 = new Item("123");
-//        Item i3 = new Item("123");
-//        Item i4 = new Item("123");
-//        Item i5 = new Item("123");
-//        Item i6 = new Item("123");
+        playlistId = getIntent().getStringExtra("playlist_id");
+        TOKEN = getIntent().getStringExtra("TOKEN");
 
+        System.out.println("TOKEN" + TOKEN);
         this.itemList = new ArrayList<>();
-//        itemList.add(i1);
-//        itemList.add(i2);
-//        itemList.add(i3);
-//        itemList.add(i4);
-//        itemList.add(i5);
-//        itemList.add(i6);
-
         this.searchView = findViewById(R.id.search_bar);
         this.recyclerView = findViewById(R.id.search_result);
-
-
 
 
         searchView.clearFocus();
@@ -70,22 +59,19 @@ public class SearchSong extends AppCompatActivity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 JsonPlaceHolderSpotifyApi apiDOA = retrofit.create(JsonPlaceHolderSpotifyApi.class);
-                Call<SearchResult> searchCall = apiDOA.getSearchResult( s, "track", 5,"Bearer " + TOKEN);
+                Call<SearchResult> searchCall = apiDOA.getSearchResult( s, "track", 5, TOKEN);
 
                 searchCall.enqueue(new Callback<SearchResult>() {
                     @Override
                     public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
                         if (response.isSuccessful()) {
-//                            System.out.println(222);
-//                            System.out.println(response.message() + "wtfd");
-//                            Log.w("2.0 getFeed > Full json res wrapped in pretty printed gson => ",new Gson().toJson(response.body()));
                             Item[] items = response.body().getItemsArray();
                             itemList = new ArrayList<>();
                             for (Item i: items) {
                                 itemList.add(i);
 
                             }
-                            ItemAdapter adapter = new ItemAdapter(itemList);
+                            ItemAdapter adapter = new ItemAdapter(itemList, TOKEN, playlistId);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setItemAnimator(new DefaultItemAnimator());

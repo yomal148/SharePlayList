@@ -19,9 +19,13 @@ import edu.northeastern.shareplaylist.R;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     List<Item> itemList;
+    String TOKEN;
+    String playlistId;
 
+    public ItemAdapter(List<Item> itemList, String TOKEN, String playlistId) {
 
-    public ItemAdapter(List<Item> itemList) {
+        this.TOKEN = TOKEN;
+        this.playlistId = playlistId;
         this.itemList = itemList;
     }
     @NonNull
@@ -57,6 +61,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             artistNameView = itemView.findViewById(R.id.artist_name);
             albumIcon = itemView.findViewById(R.id.album_image);
             add = itemView.findViewById(R.id.add_song);
+
+
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+
             itemView.setOnClickListener(this);
 
         }
