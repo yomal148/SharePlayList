@@ -1,6 +1,5 @@
 package entity;
 
-import javax.annotation.Nullable;
 
 public class User {
     private String name;
@@ -38,7 +37,7 @@ public class User {
         this.uid = uid;
     }
 
-    public User(@Nullable String name, @Nullable String email, @Nullable String uid) {
+    public User( String name,  String email,  String uid) {
         this.name = name;
         this.email = email;
         this.uid = uid;

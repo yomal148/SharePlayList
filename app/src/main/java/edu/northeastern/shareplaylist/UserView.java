@@ -28,7 +28,7 @@ public class UserView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userview);
+        setContentView(R.layout.activity_user_view);
 
         userList = new ArrayList<>();
         adapter = new UserAdapter(this, userList);
