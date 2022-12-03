@@ -14,6 +14,15 @@
         android:theme="@style/Theme.SharePlayList"
         tools:targetApi="31">
         <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".UserView"
+            android:exported="false" />
+        <activity
             android:name=".MainScreen"
             android:exported="false" />
         <activity
