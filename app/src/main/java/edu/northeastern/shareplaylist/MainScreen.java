@@ -65,7 +65,7 @@ public class MainScreen extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final CreatePlaylistBody body = new CreatePlaylistBody("whats up playlist", true, false, "Test 123");
+                final CreatePlaylistBody body = new CreatePlaylistBody("aaaaa playlist", true, false, "Test 123");
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://api.spotify.com/")
                         .addConverterFactory(GsonConverterFactory.create())
