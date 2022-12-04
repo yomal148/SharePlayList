@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,12 +27,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     List<Item> itemList;
     String TOKEN;
     String playlistId;
-
+    Toast toast;
     public ItemAdapter(List<Item> itemList, String TOKEN, String playlistId) {
 
         this.TOKEN = TOKEN;
         this.playlistId = playlistId;
         this.itemList = itemList;
+
     }
     @NonNull
     @Override
@@ -62,12 +64,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private TextView artistNameView;
         private ImageView albumIcon;
         private Button add;
+        private Toast successToast;
+        private Toast failureToast;
         public ItemViewHolder(final View itemView) {
             super(itemView);
             songNameView =itemView.findViewById(R.id.song_name);
             artistNameView = itemView.findViewById(R.id.artist_name);
             albumIcon = itemView.findViewById(R.id.album_image);
-
+            successToast = Toast.makeText(itemView.getContext(), "Successfully added song", Toast.LENGTH_SHORT);
+            failureToast = Toast.makeText(itemView.getContext(), "Successfully added song", Toast.LENGTH_SHORT);
 
 
             itemView.setOnClickListener(this);
@@ -88,18 +93,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                     call.enqueue(new Callback<AddTrackResponse>() {
                         @Override
                         public void onResponse(Call<AddTrackResponse> call, Response<AddTrackResponse> response) {
+
+                            System.out.println(uri);
+                            System.out.println(playlistId);
+                            System.out.println(TOKEN);
+                            System.out.println("searching");
                             if (response.isSuccessful()) {
-                                System.out.println("Added  song!");
+                                successToast.show();
                             }
 
+
                             else {
-                                System.out.println("shit");
+                                failureToast.show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<AddTrackResponse> call, Throwable t) {
-
+                            failureToast.show();
                         }
                     });
                 }

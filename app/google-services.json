@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:393306399981:android:3ce688abe3410e972198e4",
         "android_client_info": {
-          "package_name": "edu.northeastern.shareplaylist"
+          "package_name": "com.example.spotify_test1"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "393306399981-dgrs75o2n7u5fs67ljgh5vhclaum1r1t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "edu.northeastern.shareplaylist",
+            "package_name": "com.example.spotify_test1",
             "certificate_hash": "67ee07df383e6094fd8400cfa81357efbe182711"
           }
         },
@@ -45,9 +45,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:393306399981:android:bbbf0031558a7f932198e4",
+        "mobilesdk_app_id": "1:393306399981:android:cf5bc237e78300632198e4",
         "android_client_info": {
-          "package_name": "edu.northeastern.sharedplaylist"
+          "package_name": "edu.northeastern.shareplaylist"
         }
       },
       "oauth_client": [

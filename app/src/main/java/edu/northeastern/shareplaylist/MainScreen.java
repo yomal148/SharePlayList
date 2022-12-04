@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import entity.CreatePlaylistBody;
 import entity.CreatePlaylistResponse;
 import entity.JsonPlaceHolderSpotifyApi;
@@ -19,9 +22,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainScreen extends AppCompatActivity {
+    private DatabaseReference ref;
     private Button createButton;
     private TextView userInfo;
     private String TOKEN =
+            "";
+    private String UUID =
             "";
     private String currentUserId;
     private String playlistId;
@@ -32,7 +38,7 @@ public class MainScreen extends AppCompatActivity {
         this.TOKEN = "Bearer " + getIntent().getStringExtra("TOKEN");
         createButton = findViewById(R.id.create_button);
         userInfo = findViewById(R.id.user_info);
-
+        UUID = getIntent().getStringExtra("UUID");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.spotify.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -47,6 +53,12 @@ public class MainScreen extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     userInfo.setText(response.body().getUserID());
                     currentUserId = response.body().getUserID();
+                    // update database user table
+                    ref = FirebaseDatabase.getInstance().getReference();
+                    ref.child("user").child(UUID).setValue(currentUserId);
+
+
+
                 }
                 else {
                     userInfo.setText("Error Retriving Current User Information!");

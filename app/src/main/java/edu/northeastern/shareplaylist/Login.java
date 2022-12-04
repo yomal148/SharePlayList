@@ -24,6 +24,9 @@ public class Login extends AppCompatActivity {
     private Button login;
     private Toast toast;
     private FirebaseAuth mAuth;
+    private static final String CLIENT_ID = "78698dcc31fd4845919e96fc61514de8";
+    private static final String REDIRECT_URI = "http://localhost:8888/";
+    private String TOKEN = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +67,12 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            String uuid = mAuth.getUid();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Status ", "signInWithEmailAndPassword:success");
                             Intent intent = new Intent(Login.this, SpotifyActivity.class);
-                            intent.putExtra("username", email);
+                            intent.putExtra("uuid", uuid);
+                            System.out.println("UUID" + uuid);
                             startActivity(intent);
                         } else {
                             Toast.makeText(Login.this, "User does not exist", Toast.LENGTH_SHORT).show();

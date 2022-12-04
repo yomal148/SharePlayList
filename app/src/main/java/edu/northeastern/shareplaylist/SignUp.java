@@ -51,6 +51,7 @@ public class SignUp extends AppCompatActivity {
                 String email = editEmail.getText().toString();
                 String password = editPassword.getText().toString();
                 String name = editName.getText().toString();
+                System.out.println(123);
                 signUp(name, email, password);
             }
         });
@@ -63,9 +64,11 @@ public class SignUp extends AppCompatActivity {
                 .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        System.out.println("444");
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            addUserToDatabase(name, email, mAuth.getCurrentUser().getUid());
+                            System.out.println("im here");
+//                            addUserToDatabase(name, email, mAuth.getCurrentUser().getUid());
                             Log.d("Status ", "createUserWithEmail:success");
                             Intent intent = new Intent(SignUp.this, Login.class);
                             startActivity(intent);
@@ -77,10 +80,7 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
-    private void addUserToDatabase(String name, String email, String uid){
-        ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("user").child(uid).setValue(new User(name, email, uid));
-    }
+
 
     public void showAToast(String message){
         if (toast != null) {

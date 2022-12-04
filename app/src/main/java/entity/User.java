@@ -5,13 +5,10 @@ public class User {
     private String name;
     private String email;
     private String uid;
-    private boolean img1;
-    private boolean img2;
-    private boolean img3;
-    private boolean img4;
-    private boolean img5;
-    public User(){
-    }
+
+
+
+
 
     public String getName() {
         return name;
