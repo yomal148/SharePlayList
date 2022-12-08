@@ -21,4 +21,7 @@ public interface JsonPlaceHolderSpotifyApi {
 
     @POST("v1/playlists/{playlist_id}/tracks")
     Call<AddTrackResponse> addTrackToPlaylist(@Path(value = "playlist_id") String playlistId, @Body AddTrackBody body, @Header("Authorization") String TOKEN);
+
+    @GET("v1/playlists/{playlist_id}/tracks")
+    Call<PlaylistResult> getPlaylistItems(@Path(value = "playlist_id") String playlistId,  @Header("Authorization") String TOKEN);
 }

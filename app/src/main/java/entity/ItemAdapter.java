@@ -1,5 +1,6 @@
 package entity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             artistNameView = itemView.findViewById(R.id.artist_name);
             albumIcon = itemView.findViewById(R.id.album_image);
             successToast = Toast.makeText(itemView.getContext(), "Successfully added song", Toast.LENGTH_SHORT);
-            failureToast = Toast.makeText(itemView.getContext(), "Successfully added song", Toast.LENGTH_SHORT);
+            failureToast = Toast.makeText(itemView.getContext(), "Could not add song", Toast.LENGTH_SHORT);
 
 
             itemView.setOnClickListener(this);

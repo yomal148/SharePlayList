@@ -56,13 +56,10 @@ public class MainScreen extends AppCompatActivity {
                     // update database user table
                     ref = FirebaseDatabase.getInstance().getReference();
                     ref.child("user").child(UUID).setValue(currentUserId);
-
-
-
                 }
                 else {
-                    userInfo.setText("Error Retriving Current User Information!");
-                    System.out.println("Error Retriving Current User Information!");
+                    userInfo.setText("Error Retrieving Current User Information!");
+                    System.out.println("Error Retrieving Current User Information!");
                     System.out.println(response.code());
                     System.out.println(response.errorBody());
                 }

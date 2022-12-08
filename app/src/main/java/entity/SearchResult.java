@@ -13,8 +13,6 @@ public class SearchResult {
     public Item[] getItemsArray() {
         return tracks.items;
     }
-
-
 }
 
 

@@ -18,6 +18,49 @@ public class Item {
     @SerializedName("artists")
     public Artist[] artist;
 
+    @SerializedName("track")
+    public Track track;
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public void setSongName(String songName) {
+        this.songName = songName;
+    }
+
+    public String getSongId() {
+        return songId;
+    }
+
+    public void setSongId(String songId) {
+        this.songId = songId;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public Artist[] getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist[] artist) {
+        this.artist = artist;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     @SerializedName("uri")
     public String uri;
 
@@ -27,6 +70,13 @@ public class Item {
         this.album = album;
         this.artist = artist;
         this.uri = uri;
+    }
 
+    @Override
+    public String toString(){
+        return uri;
     }
 }
+
+
+
