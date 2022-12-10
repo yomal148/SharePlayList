@@ -46,8 +46,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class SpotifyActivity extends AppCompatActivity {
-    private static final String CLIENT_ID = "78698dcc31fd4845919e96fc61514de8";
-    private static final String REDIRECT_URI = "http://localhost:8888/";
+    private static final String CLIENT_ID = "e2ea72863e3a4ec196da146a74a79aac";
+    private static final String REDIRECT_URI = "http://localhost:5037/";
     private String TOKEN = "";
     private TextView info;
     private String UUID = "";
@@ -221,7 +221,6 @@ public class SpotifyActivity extends AppCompatActivity {
                                                              i.putExtra("user_id", currentUserId);
                                                              i.putExtra("playlist_id", playlistId);
                                                              startActivity(i);
-
                                                          }
                                                          else {
                                                              System.out.println("Fail to create playlist");

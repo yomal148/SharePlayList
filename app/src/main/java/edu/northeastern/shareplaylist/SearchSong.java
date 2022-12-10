@@ -60,7 +60,6 @@ public class SearchSong extends AppCompatActivity {
                         .build();
                 JsonPlaceHolderSpotifyApi apiDOA = retrofit.create(JsonPlaceHolderSpotifyApi.class);
                 Call<SearchResult> searchCall = apiDOA.getSearchResult( s, "track", 5, TOKEN);
-
                 searchCall.enqueue(new Callback<SearchResult>() {
                     @Override
                     public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
@@ -69,14 +68,13 @@ public class SearchSong extends AppCompatActivity {
                             itemList = new ArrayList<>();
                             for (Item i: items) {
                                 itemList.add(i);
-
                             }
+
                             ItemAdapter adapter = new ItemAdapter(itemList, TOKEN, playlistId);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setItemAnimator(new DefaultItemAnimator());
                             recyclerView.setAdapter(adapter);
-
                         }
 
                         else {

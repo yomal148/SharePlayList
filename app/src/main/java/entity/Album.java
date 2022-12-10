@@ -12,7 +12,18 @@ public class Album {
     String albumName;
 
     @SerializedName("images")
-    Image[] albumImages;
+    public Image[] albumImages;
+
+    public Artist[] getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Artist[] artists) {
+        this.artists = artists;
+    }
+
+    @SerializedName("artists")
+    public Artist[] artists;
 
     public String getAlbumId() {
         return albumId;
