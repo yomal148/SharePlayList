@@ -70,7 +70,7 @@ public class SpotifyActivity extends AppCompatActivity {
 
 //
 
-        login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() { // create rplaylist
             @Override
             public void onClick(View view) {
                 spotifyLogin();
