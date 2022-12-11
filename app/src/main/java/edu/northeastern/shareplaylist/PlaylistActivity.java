@@ -142,7 +142,7 @@ public class PlaylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MailActivity.class);
                 ArrayList<String> list = new ArrayList<>();
                 for (Item item: itemList) {
-                    list.add(item.songName);
+                    list.add(item.track.getSongName());
                 }
                 intent.putStringArrayListExtra("playlist", list);
                 startActivity(intent);
