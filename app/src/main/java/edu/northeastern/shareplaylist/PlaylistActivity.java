@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,6 +37,7 @@ public class PlaylistActivity extends AppCompatActivity {
     String TOKEN;
     String playlistId;
     String userId;
+    Button send;
 
 
     @Override
@@ -129,6 +131,20 @@ public class PlaylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchSong.class);
                 intent.putExtra("TOKEN", TOKEN);
                 intent.putExtra("playlist_id", playlistId);
+                startActivity(intent);
+            }
+        });
+
+        send = findViewById(R.id.send);
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MailActivity.class);
+                ArrayList<String> list = new ArrayList<>();
+                for (Item item: itemList) {
+                    list.add(item.track.getSongName());
+                }
+                intent.putStringArrayListExtra("playlist", list);
                 startActivity(intent);
             }
         });
