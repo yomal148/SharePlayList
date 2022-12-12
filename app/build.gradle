@@ -4,6 +4,13 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\luzix\\AndroidStudioProjects\\final\\final.jks')
+        }
+        release {
+        }
+    }
     compileSdk 33
 
     defaultConfig {
@@ -14,6 +21,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
