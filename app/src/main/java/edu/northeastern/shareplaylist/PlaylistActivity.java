@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.SQLOutput;
@@ -148,5 +149,25 @@ public class PlaylistActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("TOKEN", TOKEN);
+        outState.putString("playlist_id", playlistId);
+        outState.putString("user_id", userId);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+
+        this.TOKEN = savedInstanceState.getString("TOKEN");
+        this.playlistId = savedInstanceState.getString("playlist_id");
+        this.userId = savedInstanceState.getString("user_id");
+
+
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
